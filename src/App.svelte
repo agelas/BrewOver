@@ -1,10 +1,11 @@
 <script lang="ts">
 	import Header from "./Header.svelte";
-	export let name: string;
+	import Home from "./Home.svelte";
 </script>
 
 <main>
 	<Header />
+	<Home />
 </main>
 
 <style>
