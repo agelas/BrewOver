@@ -1,14 +1,22 @@
 <section id="home" class="flex bg-primary w-full">
-    <div class="flex-1 text-center p-8"> 
-        <h1 class="text-[60px] font-primary">BrewOver</h1>
+    <div class="text-container flex-2 text-center p-8"> 
+        <h1 class="text-6xl font-primary">BrewOver</h1>
         <p class="text-xl font-body mt-4">A place for coffee.</p>
     </div>
-    <div class="coffee-img-container">
+    <div class="coffee-img-container flex-1">
         <img src="/pourover_image.png" alt="Pourover Coffee Setup" class="coffee-img">
     </div>
 </section>
 
 <style>
+    .text-container {
+        padding-left: 120px;
+        padding-top: 90px;
+        margin-right: 60px;
+    }
+    h1 {
+        font-size: 90px;
+    }
     .coffee-img-container {
         position: relative;
         width: 50%; /* Set the width here */
