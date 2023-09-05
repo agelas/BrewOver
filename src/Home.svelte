@@ -10,7 +10,7 @@
 
 <style>
     .text-container {
-        padding-left: 120px;
+        padding-left: 300px; /* Shove the coffee-img-container div over*/
         padding-top: 90px;
         margin-right: 60px;
     }
@@ -43,5 +43,4 @@
         background: radial-gradient(circle, transparent, #050402 45%);
         pointer-events: none;
     }
-
 </style>
