@@ -1,17 +1,14 @@
 <script>
     import { onMount } from "svelte";
+    let sticky = false;
 
     onMount(() => {
         // Make header sticky
         const header = document.getElementById("header");
-        const sticky = header.offsetTop;
+        const stickyPoint = header.offsetTop;
 
         window.onscroll = function() {
-            if (window.scrollY > sticky) {
-                header.classList.add("sticky");
-            } else {
-                header.classList.remove("sticky");
-            }
+            sticky = window.scrollY > stickyPoint;
         };
     });
 
@@ -24,12 +21,14 @@
     .header {
         padding: 20px;
         text-align: center;
+        z-index: 1000; /* Added this line to ensure the header remains on top */
     }
 
     :global(.header.sticky) {
         position: fixed;
         top: 0;
         width: 100%;
+        z-index: 1000;
     }
 
     .header .navigation {
@@ -45,7 +44,7 @@
     }
 </style>
 
-<div id="header" class="header bg-primary text-paragraph">
+<div id="header" class="header bg-primary text-paragraph" class:sticky={sticky}>
     <div class="navigation">
         <div class="text-4xl font-primary">BrewOver</div>
         <div class="nav-item space-x-4 text-xl font-body flex">
