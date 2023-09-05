@@ -1,11 +1,13 @@
 <script lang="ts">
 	import Header from "./Header.svelte";
 	import Home from "./Home.svelte";
+	import About from "./About.svelte";
 </script>
 
 <main>
 	<Header />
 	<Home />
+	<About />
 </main>
 
 <style>
