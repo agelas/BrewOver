@@ -7,6 +7,7 @@ import livereload from 'rollup-plugin-livereload';
 import css from 'rollup-plugin-css-only';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
+import json from '@rollup/plugin-json';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -37,7 +38,8 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'public/build/bundle.js'
+		file: 'public/build/bundle.js',
+		context: 'window'
 	},
 	plugins: [
 		svelte({
@@ -62,6 +64,7 @@ export default {
 			exportConditions: ['svelte']
 		}),
 		commonjs(),
+		json(),
 		typescript({
 			sourceMap: !production,
 			inlineSources: !production
