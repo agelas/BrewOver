@@ -28,10 +28,16 @@
   }
 </script>
 
-<section id="about" class="flex bg-primary w-full">
-  <div>
-    <input bind:value={username} placeholder="Username" />
-    <input type="password" bind:value={password} placeholder="Password" />
-    <button on:click={register}>Register</button>
+<section id="login" class="flex bg-primary w-full h-screen items-center justify-center">
+  <div class="bg-accent p-8 rounded-lg">
+    <div class="mb-4">
+        <input class="p-2 w-full rounded" bind:value={username} placeholder="Username" />
+    </div>
+    <div class="mb-4">
+        <input type="password" bind:value={password} placeholder="Password" />
+    </div>
+    <div>
+        <button class="bg-accent hover:bg-accent-hover p-2 w-full rounded" on:click={register}>Register</button>
+    </div>
   </div>
 </section>
