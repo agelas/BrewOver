@@ -8,6 +8,7 @@ import css from 'rollup-plugin-css-only';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import json from '@rollup/plugin-json';
+import postcss from 'postcss';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -49,6 +50,14 @@ export default {
 				dev: !production
 			}
 		}),
+
+		postcss({
+			plugins: [],
+			extract: 'tailwind.css',
+			inject: false,
+			minimize: true,
+		}),
+
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),

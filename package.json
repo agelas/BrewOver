@@ -7,7 +7,8 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --no-clear",
-    "check": "svelte-check"
+    "check": "svelte-check",
+    "build:tailwind": "tailwindcss build -o src/tailwind.css"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.1.0",
