@@ -34,7 +34,7 @@
         <input class="p-2 w-full rounded" bind:value={username} placeholder="Username" />
     </div>
     <div class="mb-4">
-        <input type="password" bind:value={password} placeholder="Password" />
+        <input class="p-2 w-full rounded" type="password" bind:value={password} placeholder="Password" />
     </div>
     <div>
         <button class="bg-accent hover:bg-accent-hover p-2 w-full rounded" on:click={register}>Register</button>
