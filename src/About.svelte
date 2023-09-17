@@ -2,7 +2,7 @@
     <div class="coffee-bags-container flex-1">
         <img src="/coffee_assortment.png" alt="Bags of Artisinal Coffee" class="coffee-bags-img">
     </div>
-    <div class="flex-2 text-center p-8">
+    <div class="text-container flex-2 text-center p-8">
         <p class="text-xl font-body mt-4">A place for coffee.</p>
     </div>
 </section>
@@ -33,5 +33,11 @@
         width: 50%;
         height: auto;
         border-radius: 5px;
+    }
+
+    .text-container {
+        padding-right: 300px; /* Shove the coffee-img-container div over*/
+        padding-top: 90px;
+        margin-left: 60px;
     }
 </style>
