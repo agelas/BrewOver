@@ -1,22 +1,20 @@
-<script>
+<script lang="ts">
     import { navigate } from "svelte-routing/src/history";
+    export let username: string;
 </script>
 
-<section id="user-header" class="user-header">
-    <div class="header-items">
-        /* Display username here */
-        <button on:click={() => navigate('/')}>Logout</button>
-    </div>
-</section>
+<header class="header bg-primary">
+    <h3>Hi {username}</h3>
+</header>
 
 <style>
-    .user-header {
-        padding: 20px;
-        justify-content: flex-end; /* should hopefully smush everything right */
+    .header {
+        padding: 16px 0;
+        text-align: center;
     }
 
-    .user-header .header-items {
-        display: flex;
-        justify-content: space-between;
+    h3 {
+        font-size: 24px;
+        margin: 0;
     }
 </style>
