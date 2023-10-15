@@ -1,5 +1,6 @@
 <script>
   import { supabase } from "./supabaseClient";
+  import { navigate } from "svelte-routing";
 
   let username = "";
   let password = "";
@@ -24,6 +25,7 @@
       alert("Error creating user:", error.message, error.details);
     } else {
       alert("User registration successful");
+      navigate('/dashboard/${username}');
     }
   }
 </script>
