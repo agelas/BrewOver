@@ -6,14 +6,20 @@
     export let username; // Expose the prop to get it from the route
 
     onMount(async () => {
-        const { data, error } = await supabase.from('Users').select('*').eq('username', username);
+        const { data, error } = await supabase
+            .from("Users")
+            .select("*")
+            .eq("username", username);
 
         if (error) {
-            console.error('Error fetching user: ', error.message, error.details);
+            console.error(
+                "Error fetching user: ",
+                error.message,
+                error.details
+            );
         } else {
             username = data[0].username;
         }
-
     });
 </script>
 

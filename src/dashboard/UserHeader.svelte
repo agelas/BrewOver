@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { navigate } from "svelte-routing/src/history";
     export let username: string;
 </script>
 
