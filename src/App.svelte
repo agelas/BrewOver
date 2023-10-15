@@ -4,18 +4,22 @@
 	import Home from "./Home.svelte";
 	import About from "./About.svelte";
 	import RegisterForm from "./RegisterForm.svelte";
+    import UserDashboard from "./dashboard/UserDashboard.svelte";
 </script>
 
 <Router>
-	<Route path="/" component={Home} />
+	<main>
+		<Header />
+		<Route path="/" let:params>
+			<Home />
+			<About />
+			<RegisterForm />
+		</Route>
+		<Route path="/dashboard/:username" let:params>
+			<UserDashboard username="{params.username}" />
+		</Route>
+	</main>
 </Router>
-
-<main>
-	<Header />
-	<Home />
-	<About />
-	<RegisterForm />
-</main>
 
 <style>
 	main {
