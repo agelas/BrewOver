@@ -25,7 +25,8 @@
       alert("Error creating user:", error.message, error.details);
     } else {
       alert("User registration successful");
-      navigate('/dashboard/${username}');
+      console.log(`Navigating to: /dashboard/${username}`);
+      navigate(`/dashboard/${username}`);
     }
   }
 </script>

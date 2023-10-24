@@ -16,7 +16,7 @@
 			<RegisterForm />
 		</Route>
 		<Route path="/dashboard/:username" let:params>
-			<UserDashboard username="{params.username}" />
+			<UserDashboard username={params.username} />
 		</Route>
 	</main>
 </Router>
