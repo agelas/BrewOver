@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   let sticky = false;
+  let showLoginForm = false;
 
   onMount(() => {
     // Make header sticky
@@ -14,6 +15,15 @@
 
   function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  }
+
+  function toggleLoginForm() {
+    showLoginForm = !showLoginForm;
+  }
+
+  function handleLogin(event) {
+    event.preventDefault();
+    // Logic for login handling
   }
 </script>
 
@@ -29,10 +39,19 @@
         class="nav-item border-none"
         on:click={() => scrollToSection("about")}>About</button
       >
-      <button
-        class="nav-item border-none"
-        on:click={() => scrollToSection("login")}>Login</button
+      <button class="nav-item border-none" on:click={toggleLoginForm}
+        >Login</button
       >
+
+      {#if showLoginForm}
+        <div class="login-dropdown">
+          <form on:submit={handleLogin}>
+            <input type="text" placeholder="Username" />
+            <input type="password" placeholder="Password" />
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      {/if}
     </div>
   </div>
 </div>
@@ -61,5 +80,21 @@
     border: none;
     background: none;
     padding: 0;
+  }
+
+  .login-dropdown {
+    position: absolute;
+    right: 0;
+    background: gray;
+    box-shadow: 0px 8px 16px 0px rgpa(0,0,0,0.2);
+    padding: 12px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-dropdown input,
+  .login-dropdown button {
+    margin-bottom: 8px;
   }
 </style>
