@@ -43,15 +43,17 @@
         >Login</button
       >
 
-      {#if showLoginForm}
-        <div class="login-dropdown">
-          <form on:submit={handleLogin}>
-            <input type="text" placeholder="Username" />
-            <input type="password" placeholder="Password" />
-            <button type="submit">Login</button>
-          </form>
-        </div>
-      {/if}
+      <div class="relative">
+        {#if showLoginForm}
+          <div class="login-dropdown">
+            <form on:submit={handleLogin}>
+              <input class="p-2 w-full rounded" type="text" placeholder="Username" />
+              <input class="p-2 rounded" type="password" placeholder="Password" />
+              <button class="bg-accent hover:bg-accent-hover p-2 w-full rounded">Login</button>
+            </form>
+          </div>
+        {/if}
+      </div>
     </div>
   </div>
 </div>
@@ -82,15 +84,20 @@
     padding: 0;
   }
 
+  .relative {
+    position: relative;
+  }
+
   .login-dropdown {
     position: absolute;
     right: 0;
-    background: gray;
-    box-shadow: 0px 8px 16px 0px rgpa(0,0,0,0.2);
+    top: 100%;
+    background: #ac6b34;
     padding: 12px;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
+    z-index: 2000;
   }
 
   .login-dropdown input,
