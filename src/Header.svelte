@@ -1,7 +1,12 @@
 <script>
   import { onMount } from "svelte";
+  import { navigate } from "svelte-routing";
+  import { supabase } from "./supabaseClient";
+
   let sticky = false;
   let showLoginForm = false;
+  let username = "";
+  let password = "";
 
   onMount(() => {
     // Make header sticky
@@ -21,9 +26,24 @@
     showLoginForm = !showLoginForm;
   }
 
-  function handleLogin(event) {
+  async function handleLogin(event) {
     event.preventDefault();
-    // Logic for login handling
+    let { data: user, error } = await supabase
+      .from("Users")
+      .select("username")
+      .eq("username", username)
+      .eq("password", password);
+
+      if (error) {
+        alert("Error logging in: ", error.message, error.details);
+        return;
+      }
+
+      if (user && user.length) {
+        navigate(`/dashboard/${username}`);
+      } else {
+        alert("Incorrect username or password");
+      }
   }
 </script>
 
@@ -47,9 +67,22 @@
         {#if showLoginForm}
           <div class="login-dropdown">
             <form on:submit={handleLogin}>
-              <input class="p-2 w-full rounded" type="text" placeholder="Username" />
-              <input class="p-2 rounded" type="password" placeholder="Password" />
-              <button class="bg-accent hover:bg-accent-hover p-2 w-full rounded">Login</button>
+              <input
+                class="p-2 w-full rounded"
+                type="text"
+                bind:value={username}
+                placeholder="Username"
+              />
+              <input
+                class="p-2 rounded"
+                bind:value={password}
+                type="password"
+                placeholder="Password"
+              />
+              <button class="bg-accent hover:bg-accent-hover p-2 w-full rounded"
+                type="submit"
+                >Login</button
+              >
             </form>
           </div>
         {/if}
