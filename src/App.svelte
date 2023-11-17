@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Route, Router, Link } from "svelte-routing";
+	import { Route, Router } from "svelte-routing";
 	import Header from "./Header.svelte";
 	import Home from "./Home.svelte";
 	import About from "./About.svelte";
@@ -9,8 +9,8 @@
 
 <Router>
 	<main>
-		<Header />
-		<Route path="/" let:params>
+		<Route path="/">
+			<Header />
 			<Home />
 			<About />
 			<RegisterForm />
