@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {navigate} from "svelte-routing";
+    import { navigate } from "svelte-routing";
     export let username: string;
 
     function handleLogout() {
@@ -11,7 +11,10 @@
     <div class="text-4xl font-primary">BrewOver</div>
     <div class="user-display">
         <h3>Hi {username}</h3>
-        <button class="bg-accent hover:bg-accent-hover rounded" on:click={handleLogout}>Logout</button>
+        <button
+            class="bg-accent hover:bg-accent-hover rounded"
+            on:click={handleLogout}>Logout</button
+        >
     </div>
 </header>
 
