@@ -15,8 +15,8 @@
 			<About />
 			<RegisterForm />
 		</Route>
-		<Route path="/dashboard/:username" let:params>
-			<UserDashboard username={params.username} />
+		<Route path="/dashboard/:userId" let:params>
+			<UserDashboard userId={params.userId} />
 		</Route>
 	</main>
 </Router>
