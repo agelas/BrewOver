@@ -20,7 +20,7 @@
     if (data.session) {
       let { error: profileError } = await supabase
         .from("Profiles")
-        .insert([{ user_id: data.session.user.id, username: username }]);
+        .insert([{ user_id: data.session.user.id, username: username, user_email: email }]);
       if (profileError) {
         alert("Error creating profile:", profileError.message);
       } else {
