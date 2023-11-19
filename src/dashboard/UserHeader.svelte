@@ -1,8 +1,10 @@
 <script lang="ts">
     import { navigate } from "svelte-routing";
+    import { supabase } from "../supabaseClient";
     export let username: string;
 
-    function handleLogout() {
+    async function handleLogout() {
+        let { error } = await supabase.auth.signOut();
         navigate(`/`);
     }
 </script>

@@ -4,26 +4,9 @@
     import NewBrewForm from "./NewBrewForm.svelte";
     import { supabase } from "../supabaseClient";
 
-    export let username; // Expose the prop to get it from the route
-    let userId;
+    export let userId; // Expose the prop to get it from the route
 
-    onMount(async () => {
-        const { data, error } = await supabase
-            .from("Users")
-            .select("*")
-            .eq("username", username);
-
-        if (error) {
-            console.error(
-                "Error fetching user: ",
-                error.message,
-                error.details
-            );
-        } else if (data) {
-            username = data[0].username;
-            userId = data[0].user_id;
-        }
-    });
+    let username = "tester";
 </script>
 
 <div>
