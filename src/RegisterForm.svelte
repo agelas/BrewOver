@@ -7,7 +7,7 @@
   let username = "";
 
   async function register() {
-    let { user, error: signUpError } = await supabase.auth.signUp({
+    let { data, error: signUpError } = await supabase.auth.signUp({
       email: email,
       password: password,
     });
@@ -17,22 +17,21 @@
       return;
     }
 
-    if (user) {
+    if (data.session) {
       let { error: profileError } = await supabase
         .from("Profiles")
-        .insert([{ user_id: user_id, username: username }]);
-
+        .insert([{ user_id: data.session.user.id, username: username }]);
       if (profileError) {
         alert("Error creating profile:", profileError.message);
       } else {
         alert(
           "User registration successful. Please check your email to verify account."
         );
-        navigate(`/dashboard/${user.id}`);
+        navigate(`/dashboard/${data.session.user.id}`);
       }
     } else {
       alert(
-        "User registration successful. Please check you email to verify account."
+        "Registration successful. Please check your email to verify account."
       );
     }
   }
@@ -48,6 +47,13 @@
         class="p-2 w-full rounded"
         bind:value={email}
         placeholder="email"
+      />
+    </div>
+    <div class="mb-4">
+      <input
+        class="p-2 w-full rounded"
+        bind:value={username}
+        placeholder="username"
       />
     </div>
     <div class="mb-4">
