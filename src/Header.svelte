@@ -28,22 +28,35 @@
 
   async function handleLogin(event) {
     event.preventDefault();
-    let { data: user, error } = await supabase
-      .from("Users")
-      .select("username")
-      .eq("username", username)
-      .eq("password", password);
 
-      if (error) {
-        alert("Error logging in: ", error.message, error.details);
+    // Check if input is email
+    if (username.includes("@")) {
+      ({ data: showLoginForm, error } = await supabase.auth.signInWithPassword({
+        email: username,
+        password: password,
+      }));
+    } else {
+      // User entered a username
+      const { data: profile, error: profileError } = await supabase
+        .from("Profiles")
+        .select("user_id, user_email")
+        .eq("username", username);
+
+      if (profileError) {
+        alert("Error fetching user: ", profileError.message);
         return;
       }
 
-      if (user && user.length) {
-        navigate(`/dashboard/${username}`);
+      if (profile) {
+        ({ data: login, error } = await supabase.auth.signInWithPassword({
+          email: profile.email,
+          password: password,
+        }));
       } else {
-        alert("Incorrect username or password");
+        alert("Username not found");
+        return;
       }
+    }
   }
 </script>
 
@@ -71,7 +84,7 @@
                 class="p-2 w-full rounded"
                 type="text"
                 bind:value={username}
-                placeholder="Username"
+                placeholder="Email/Username"
               />
               <input
                 class="p-2 rounded"
@@ -79,9 +92,9 @@
                 type="password"
                 placeholder="Password"
               />
-              <button class="bg-accent hover:bg-accent-hover p-2 w-full rounded"
-                type="submit"
-                >Login</button
+              <button
+                class="bg-accent hover:bg-accent-hover p-2 w-full rounded"
+                type="submit">Login</button
               >
             </form>
           </div>
