@@ -4,24 +4,35 @@
 
   let email = "";
   let password = "";
+  let username = "";
 
   async function register() {
-    let { user, error } = await supabase.auth.signUp({
+    let { user, error: signUpError } = await supabase.auth.signUp({
       email: email,
-      passwprd: password,
+      password: password,
     });
 
-    if (error) {
+    if (signUpError) {
       alert("Error creating user:", error.message);
-    } else if (user) {
-      alert(
-        "User registration successful. Please check your email to verify your account."
-      );
-      navigate(`dashboard/${user.id}`);
+      return;
+    }
+
+    if (user) {
+      let { error: profileError } = await supabase
+        .from("Profiles")
+        .insert([{ user_id: user_id, username: username }]);
+
+      if (profileError) {
+        alert("Error creating profile:", profileError.message);
+      } else {
+        alert(
+          "User registration successful. Please check your email to verify account."
+        );
+        navigate(`/dashboard/${user.id}`);
+      }
     } else {
-      // No error and no user object case, shouldn't happen though right?
       alert(
-        "Registration successful. Please check your email to verify your account"
+        "User registration successful. Please check you email to verify account."
       );
     }
   }
