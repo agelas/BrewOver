@@ -28,10 +28,10 @@
 
   async function handleLogin(event) {
     event.preventDefault();
-
+    let login, error;
     // Check if input is email
     if (username.includes("@")) {
-      ({ data: showLoginForm, error } = await supabase.auth.signInWithPassword({
+      ({ data: login, error } = await supabase.auth.signInWithPassword({
         email: username,
         password: password,
       }));
@@ -40,7 +40,8 @@
       const { data: profile, error: profileError } = await supabase
         .from("Profiles")
         .select("user_id, user_email")
-        .eq("username", username);
+        .eq("username", username)
+        .single();
 
       if (profileError) {
         alert("Error fetching user: ", profileError.message);
@@ -48,14 +49,24 @@
       }
 
       if (profile) {
+        console.log(profile);
         ({ data: login, error } = await supabase.auth.signInWithPassword({
-          email: profile.email,
+          email: profile.user_email,
           password: password,
         }));
       } else {
         alert("Username not found");
         return;
       }
+    }
+
+    if (error) {
+      alert("Error logging in: ", error.message);
+    } else if (login) {
+      navigate(`/dashboard/${login.user.id}`);
+    } else {
+      // No error and no login object, should be unlikely.
+      alert("An unknown error occurred during login");
     }
   }
 </script>
