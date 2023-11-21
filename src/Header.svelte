@@ -49,7 +49,6 @@
       }
 
       if (profile) {
-        console.log(profile);
         ({ data: login, error } = await supabase.auth.signInWithPassword({
           email: profile.user_email,
           password: password,
