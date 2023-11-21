@@ -11,7 +11,8 @@
     let coffeeWaterRatio = "";
     let pours = 0;
 
-    async function addBrew() {
+    async function addBrew(event) {
+        event.preventDefault();
         const { data, error } = await supabase.from("Brews").insert([
             {
                 user_id: userId,
@@ -34,7 +35,7 @@
 <section id="newBrewForm" class="flex bg-primary w-full justify-center">
     <div
         class="bg-accent p-4"
-        style="width: 33%; min-width: 0; max-width: 1024px; margin: auto;"
+        style="width: 33%; min-width: 0; max-width: 1024px; margin: auto; border-radius: 0.5rem"
     >
         <div class="form-container">
             <div class="full-width">
@@ -48,7 +49,7 @@
                     type="text"
                     bind:value={name}
                     placeholder="Enter brew name"
-                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    style="width: 33%; justify-content: center"
                 />
             </div>
 
@@ -71,7 +72,7 @@
                 <label
                     for="preInfusionTime"
                     class="block text-sm font-medium text-gray-700"
-                    >Pre-Infusion Time (s)</label
+                    >Pre-Infusion Time</label
                 >
                 <input
                     id="preInfusionTime"
@@ -129,8 +130,8 @@
 
             <div class="full-width">
                 <button
-                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    onclick={addBrew}>Add Brew</button
+                    style="width: 25%; justify-content: center"
+                    on:click={addBrew}>Add Brew</button
                 >
             </div>
         </div>
@@ -146,5 +147,11 @@
 
     .full-width {
         grid-column: 1 / -1; /* Span full width */
+    }
+
+    input,
+    button {
+        padding: 1rem;
+        border-radius: 0.25rem;
     }
 </style>
