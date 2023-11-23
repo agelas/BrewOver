@@ -32,112 +32,121 @@
 </script>
 
 <section id="newBrewForm" class="flex bg-primary w-full justify-center">
-    <div
-        class="bg-accent p-4"
-        style="width: 33%; min-width: 0; max-width: 1024px; margin: auto; border-radius: 0.5rem"
-    >
-        <div class="form-container">
-            <div class="full-width">
-                <label
-                    for="brewName"
-                    class="block text-sm font-medium text-gray-700"
-                    >Name of Brew</label
-                >
-                <input
-                    id="brewName"
-                    type="text"
-                    bind:value={name}
-                    placeholder="Enter brew name"
-                    style="width: 33%; justify-content: center"
-                />
-            </div>
+    <div class="content-container" style="width: 100%">
+        <div
+            class="bg-accent p-4"
+            style="width: 33%; min-width: 0; max-width: 1024px; margin: auto; border-radius: 0.5rem"
+        >
+            <div class="form-container">
+                <div class="full-width">
+                    <label
+                        for="brewName"
+                        class="block text-sm font-medium text-gray-700"
+                        >Name of Brew</label
+                    >
+                    <input
+                        id="brewName"
+                        type="text"
+                        bind:value={name}
+                        placeholder="Enter brew name"
+                        style="width: 33%; justify-content: center"
+                    />
+                </div>
 
-            <div>
-                <label
-                    for="grindSize"
-                    class="block text-sm font-medium text-gray-700"
-                    >Grind Size</label
-                >
-                <input
-                    id="grindSize"
-                    type="text"
-                    placeholder="Enter grind size"
-                    bind:value={grindSize}
-                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                />
-            </div>
+                <div>
+                    <label
+                        for="grindSize"
+                        class="block text-sm font-medium text-gray-700"
+                        >Grind Size</label
+                    >
+                    <input
+                        id="grindSize"
+                        type="text"
+                        placeholder="Enter grind size"
+                        bind:value={grindSize}
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    />
+                </div>
 
-            <div>
-                <label
-                    for="preInfusionTime"
-                    class="block text-sm font-medium text-gray-700"
-                    >Pre-Infusion Time</label
-                >
-                <input
-                    id="preInfusionTime"
-                    type="number"
-                    placeholder="0"
-                    bind:value={preInfusionTime}
-                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                />
-            </div>
+                <div>
+                    <label
+                        for="preInfusionTime"
+                        class="block text-sm font-medium text-gray-700"
+                        >Pre-Infusion Time</label
+                    >
+                    <input
+                        id="preInfusionTime"
+                        type="number"
+                        placeholder="0"
+                        bind:value={preInfusionTime}
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    />
+                </div>
 
-            <div>
-                <label
-                    for="brewTime"
-                    class="block text-sm font-medium text-gray-700"
-                    >Brew Time</label
-                >
-                <input
-                    id="brewTime"
-                    type="number"
-                    placeholder="0"
-                    bind:value={brewTime}
-                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                />
-            </div>
+                <div>
+                    <label
+                        for="brewTime"
+                        class="block text-sm font-medium text-gray-700"
+                        >Brew Time</label
+                    >
+                    <input
+                        id="brewTime"
+                        type="number"
+                        placeholder="0"
+                        bind:value={brewTime}
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    />
+                </div>
 
-            <div>
-                <label
-                    for="coffeeWaterRatio"
-                    class="block text-sm font-medium text-gray-700"
-                    >Coffee to Water Ratio</label
-                >
-                <input
-                    id="coffeeWaterRatio"
-                    type="text"
-                    placeholder="1:15"
-                    bind:value={coffeeWaterRatio}
-                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                />
-            </div>
+                <div>
+                    <label
+                        for="coffeeWaterRatio"
+                        class="block text-sm font-medium text-gray-700"
+                        >Coffee to Water Ratio</label
+                    >
+                    <input
+                        id="coffeeWaterRatio"
+                        type="text"
+                        placeholder="1:15"
+                        bind:value={coffeeWaterRatio}
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    />
+                </div>
 
-            <div>
-                <label
-                    for="pours"
-                    class="block text-sm font-medium text-gray-700"
-                    >Number of Pours</label
-                >
-                <input
-                    id="pours"
-                    type="number"
-                    placeholder="0"
-                    bind:value={pours}
-                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                />
-            </div>
+                <div>
+                    <label
+                        for="pours"
+                        class="block text-sm font-medium text-gray-700"
+                        >Number of Pours</label
+                    >
+                    <input
+                        id="pours"
+                        type="number"
+                        placeholder="0"
+                        bind:value={pours}
+                        class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    />
+                </div>
 
-            <div class="full-width">
-                <button
-                    style="width: 25%; justify-content: center"
-                    on:click={addBrew}>Add Brew</button
-                >
+                <div class="full-width">
+                    <button
+                        style="width: 25%; justify-content: center"
+                        on:click={addBrew}>Add Brew</button
+                    >
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <style>
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
     .form-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
