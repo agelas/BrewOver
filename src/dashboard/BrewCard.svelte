@@ -8,42 +8,53 @@
 >
     <div class="form-container">
         <div class="full-width">
-            <label for="brew card" class="block text-sm font-medium text-gray-700"
+            <label
+                for="brew card"
+                class="block text-sm font-medium text-gray-700"
                 >Name of Brew</label
             >
             <div class="brew-detail">{brew.name}</div>
         </div>
 
         <div>
-            <label for="brew card" class="block text-sm font-medium text-gray-700"
+            <label
+                for="brew card"
+                class="block text-sm font-medium text-gray-700"
                 >Grind Size</label
             >
-            <div class="brew-detail">{brew.grindSize}</div>
+            <div class="brew-detail">{brew.grind_size}</div>
         </div>
 
         <div>
-            <label for="brew card" class="block text-sm font-medium text-gray-700"
+            <label
+                for="brew card"
+                class="block text-sm font-medium text-gray-700"
                 >Pre-Infusion Time</label
             >
-            <div class="brew-detail">{brew.preInfusionTime} seconds</div>
+            <div class="brew-detail">{brew.pre_infusion_time} seconds</div>
         </div>
 
         <div>
-            <label for="brew card" class="block text-sm font-medium text-gray-700"
-                >Brew Time</label
+            <label
+                for="brew card"
+                class="block text-sm font-medium text-gray-700">Brew Time</label
             >
-            <div class="brew-detail">{brew.brewTime} seconds</div>
+            <div class="brew-detail">{brew.brew_time} seconds</div>
         </div>
 
         <div>
-            <label for="brew card" class="block text-sm font-medium text-gray-700"
+            <label
+                for="brew card"
+                class="block text-sm font-medium text-gray-700"
                 >Coffee to Water Ratio</label
             >
-            <div class="brew-detail">{brew.coffeeWaterRatio}</div>
+            <div class="brew-detail">{brew.coffee_water_ratio}</div>
         </div>
 
         <div>
-            <label for="brew card" class="block text-sm font-medium text-gray-700"
+            <label
+                for="brew card"
+                class="block text-sm font-medium text-gray-700"
                 >Number of Pours</label
             >
             <div class="brew-detail">{brew.pours}</div>
@@ -55,7 +66,7 @@
     .brew-detail {
         padding: 1rem;
         border-radius: 0.25rem;
-        background: gray; 
+        background: gray;
     }
 
     .form-container {
@@ -65,6 +76,6 @@
     }
 
     .full-width {
-        grid-column: 1 / -1; 
+        grid-column: 1 / -1;
     }
 </style>
