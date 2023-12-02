@@ -8,7 +8,7 @@
 
     let brews = [];
     let currentBrewIndex = 0;
-    
+
     async function fetchBrews() {
         // Fetch brews
         const { data, error } = await supabase
@@ -53,7 +53,7 @@
             </div>
         {:else}
             <p>No brews found. Add your first brew!</p>
-            <NewBrewForm userId={userId} />
+            <NewBrewForm {userId} />
         {/if}
     </div>
 </section>
