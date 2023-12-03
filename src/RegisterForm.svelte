@@ -20,18 +20,24 @@
     if (data.session) {
       let { error: profileError } = await supabase
         .from("Profiles")
-        .insert([{ user_id: data.session.user.id, username: username, user_email: email }]);
+        .insert([
+          {
+            user_id: data.session.user.id,
+            username: username,
+            user_email: email,
+          },
+        ]);
       if (profileError) {
         alert("Error creating profile:", profileError.message);
       } else {
         alert(
-          "User registration successful. Please check your email to verify account."
+          "User registration successful. Please check your email to verify account.",
         );
         navigate(`/dashboard/${data.session.user.id}`);
       }
     } else {
       alert(
-        "Registration successful. Please check your email to verify account."
+        "Registration successful. Please check your email to verify account.",
       );
     }
   }
