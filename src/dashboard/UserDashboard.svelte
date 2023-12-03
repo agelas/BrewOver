@@ -3,11 +3,9 @@
     import BrewDisplay from "./BrewDisplay.svelte";
 
     export let userId; // Expose the prop to get it from the route
-
-    let username = "tester";
 </script>
 
 <div>
-    <UserHeader {username} />
+    <UserHeader {userId} />
     <BrewDisplay {userId} />
 </div>

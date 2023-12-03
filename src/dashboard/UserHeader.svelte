@@ -1,12 +1,30 @@
 <script lang="ts">
     import { navigate } from "svelte-routing";
     import { supabase } from "../supabaseClient";
-    export let username: string;
+    import { onMount } from "svelte";
+
+    export let userId;
+    let username = "";
+
+    async function fetchUsername() {
+        const { data, error } = await supabase
+            .from("Profiles")
+            .select("username")
+            .eq("user_id", userId)
+            .single();
+        if (error) {
+            console.error("Error fetching username", error);
+        } else {
+            username = data.username;
+        }
+    }
 
     async function handleLogout() {
         let { error } = await supabase.auth.signOut();
         navigate(`/`);
     }
+
+    onMount(fetchUsername);
 </script>
 
 <header class="header bg-primary">
