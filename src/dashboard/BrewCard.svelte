@@ -8,18 +8,13 @@
 >
     <div class="form-container">
         <div class="full-width">
-            <label
-                for="brew card"
-                class="block text-sm font-medium text-gray-700"
-                >Name of Brew</label
-            >
-            <div class="brew-detail">{brew.name}</div>
+            <div class="brew-detail font-primary text-4xl">{brew.name}</div>
         </div>
 
         <div>
             <label
                 for="brew card"
-                class="block text-sm font-medium text-gray-700"
+                class="font-primary"
                 >Grind Size</label
             >
             <div class="brew-detail">{brew.grind_size}</div>
@@ -28,7 +23,7 @@
         <div>
             <label
                 for="brew card"
-                class="block text-sm font-medium text-gray-700"
+                class="font-primary"
                 >Pre-Infusion Time</label
             >
             <div class="brew-detail">{brew.pre_infusion_time} seconds</div>
@@ -37,7 +32,7 @@
         <div>
             <label
                 for="brew card"
-                class="block text-sm font-medium text-gray-700">Brew Time</label
+                class="font-primary">Brew Time</label
             >
             <div class="brew-detail">{brew.brew_time} seconds</div>
         </div>
@@ -45,7 +40,7 @@
         <div>
             <label
                 for="brew card"
-                class="block text-sm font-medium text-gray-700"
+                class="font-primary"
                 >Coffee to Water Ratio</label
             >
             <div class="brew-detail">{brew.coffee_water_ratio}</div>
@@ -54,7 +49,7 @@
         <div>
             <label
                 for="brew card"
-                class="block text-sm font-medium text-gray-700"
+                class="font-primary"
                 >Number of Pours</label
             >
             <div class="brew-detail">{brew.pours}</div>
@@ -66,7 +61,6 @@
     .brew-detail {
         padding: 1rem;
         border-radius: 0.25rem;
-        background: gray;
     }
 
     .form-container {
