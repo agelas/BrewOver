@@ -89,24 +89,22 @@
       <div class="relative">
         {#if showLoginForm}
           <div class="login-dropdown">
-            <form on:submit={handleLogin}>
-              <input
-                class="p-2 w-full rounded"
-                type="text"
-                bind:value={username}
-                placeholder="Email/Username"
-              />
-              <input
-                class="p-2 rounded"
-                bind:value={password}
-                type="password"
-                placeholder="Password"
-              />
-              <button
-                class="bg-accent hover:bg-accent-hover p-2 w-full rounded"
-                type="submit">Login</button
-              >
-            </form>
+            <input
+              class="p-2 w-full rounded"
+              type="text"
+              bind:value={username}
+              placeholder="Email/Username"
+            />
+            <input
+              class="p-2 rounded"
+              bind:value={password}
+              type="password"
+              placeholder="Password"
+            />
+            <button
+              class="bg-accent hover:bg-accent-hover p-2 w-full rounded"
+              on:click={handleLogin}>Login</button
+            >
           </div>
         {/if}
       </div>
