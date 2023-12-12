@@ -41,6 +41,28 @@
             currentBrewIndex--;
         }
     }
+
+    async function handleRemove(event) {
+        const { brew_id } = event.detail;
+
+        const shouldDelete = confirm(
+            "Are you sure you want to delete this brew?",
+        );
+
+        if (shouldDelete) {
+            const { error } = await supabase
+                .from("Brews")
+                .delete()
+                .match({ brew_id });
+
+            if (error) {
+                console.error("Error removing brew", error);
+            } else {
+                // Remove brew from local state
+                brews = brews.filter((brew) => brew.brew_id != brew_id);
+            }
+        }
+    }
 </script>
 
 <section id="brewDisplay" class="flex bg-primary w-full justify-center">
@@ -48,7 +70,10 @@
         {#if brews.length > 0}
             <div class="flex items-center justify-center">
                 <button on:click={goToPreviousBrew}>Previous</button>
-                <BrewCard brew={brews[currentBrewIndex]} />
+                <BrewCard
+                    brew={brews[currentBrewIndex]}
+                    on:remove={handleRemove}
+                />
                 <button on:click={goToNextBrew}>Next</button>
             </div>
         {:else}
