@@ -11,14 +11,17 @@
     let coffeeWaterRatio = "";
     let pours = 0;
 
-    // Reactive statement to update form values when brewToUpdate changes
-    $: if (brewToUpdate) {
+    function prefillFormValues() {
         name = brewToUpdate.name;
         grindSize = brewToUpdate.grind_size;
         preInfusionTime = brewToUpdate.pre_infusion_time;
         brewTime = brewToUpdate.brew_time;
         coffeeWaterRatio = brewToUpdate.coffee_water_ratio;
         pours = brewToUpdate.pours;
+    }
+
+    $: if (brewToUpdate) {
+        prefillFormValues();
     }
 
     async function upsertBrew(event) {
