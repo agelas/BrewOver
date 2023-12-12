@@ -8,6 +8,8 @@
 
     let brews = [];
     let currentBrewIndex = 0;
+    let showUpdateForm = false;
+    let brewToUpdate = null;
 
     async function fetchBrews() {
         // Fetch brews
@@ -19,13 +21,23 @@
             console.error("Error fetching brews", error);
         } else {
             brews = data;
+            if (brews.length === 0) {
+                showNewBrewForm = true;
+            }
         }
     }
 
     onMount(fetchBrews);
 
     function handleAddBrew() {
-        // Dispatch an event to open NewBrewForm, deal with this later
+        brewToUpdate = null;
+        shownewBrewForm = true;
+    }
+
+    function closeForm() {
+        showNewBrewForm = false;
+        brewToUpdate = null;
+        fetchBrews();
     }
 
     function goToNextBrew() {
@@ -40,6 +52,13 @@
         if (currentBrewIndex > 0) {
             currentBrewIndex--;
         }
+    }
+
+    function handleUpdate(event) {
+        const { brew_id } = event.detail;
+        brewToUpdate = brews.find(b => b.brew_id === brew_id);
+        showUpdateForm = true;
+        console.log("Try to update", brew_id, brewToUpdate);
     }
 
     async function handleRemove(event) {
@@ -67,11 +86,14 @@
 
 <section id="brewDisplay" class="flex bg-primary w-full justify-center">
     <div class="content-container" style="width: 100%">
-        {#if brews.length > 0}
+        {#if showUpdateForm}
+            <NewBrewForm {userId} {brewToUpdate} />
+        {:else if brews.length > 0}
             <div class="flex items-center justify-center">
                 <button on:click={goToPreviousBrew}>Previous</button>
                 <BrewCard
                     brew={brews[currentBrewIndex]}
+                    on:update={handleUpdate}
                     on:remove={handleRemove}
                 />
                 <button on:click={goToNextBrew}>Next</button>

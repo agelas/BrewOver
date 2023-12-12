@@ -5,7 +5,7 @@
     const dispatch = createEventDispatcher();
 
     function updateBrew() {
-        dispatch("update", { brewId: brew.brew_id });
+        dispatch("update", { brew_id: brew.brew_id });
     }
 
     function removeBrew() {

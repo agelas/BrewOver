@@ -2,6 +2,7 @@
     import { supabase } from "../supabaseClient";
 
     export let userId;
+    export let brewToUpdate = null;
 
     let name = "";
     let grindSize = "";
@@ -10,23 +11,42 @@
     let coffeeWaterRatio = "";
     let pours = 0;
 
-    async function addBrew(event) {
-        event.preventDefault();
-        const { data, error } = await supabase.from("Brews").insert([
-            {
-                user_id: userId,
-                name,
-                grind_size: grindSize,
-                pre_infusion_time: preInfusionTime,
-                brew_time: brewTime,
-                coffee_water_ratio: coffeeWaterRatio,
-                pours,
-                // timestamp should be done by supabase hopefully
-            },
-        ]);
+    // Reactive statement to update form values when brewToUpdate changes
+    $: if (brewToUpdate) {
+        name = brewToUpdate.name;
+        grindSize = brewToUpdate.grind_size;
+        preInfusionTime = brewToUpdate.pre_infusion_time;
+        brewTime = brewToUpdate.brew_time;
+        coffeeWaterRatio = brewToUpdate.coffee_water_ratio;
+        pours = brewToUpdate.pours;
+    }
 
-        if (error) {
-            console.error("Error inserting brew", error);
+    async function upsertBrew(event) {
+        event.preventDefault();
+
+        const brewData = {
+            user_id: userId,
+            name,
+            grind_size: grindSize,
+            pre_infusion_time: preInfusionTime,
+            brew_time: brewTime,
+            coffee_water_ratio: coffeeWaterRatio,
+            pours,
+        };
+
+        if (brewToUpdate) {
+            const { error } = await supabase
+                .from("Brews")
+                .update(brewData)
+                .match({ brew_id: brewToUpdate.brew_id });
+            if (error) {
+                console.error("Error updating brew", error);
+            }
+        } else {
+            const { error } = await supabase.from("Brews").insert([brewData]);
+            if (error) {
+                console.error("Error inserting brew", error);
+            }
         }
     }
 </script>
@@ -126,7 +146,7 @@
         <div class="full-width">
             <button
                 style="width: 25%; justify-content: center"
-                on:click={addBrew}>Add Brew</button
+                on:click={upsertBrew}>Add Brew</button
             >
         </div>
     </div>
