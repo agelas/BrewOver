@@ -1,5 +1,8 @@
 <script>
+    import { createEventDispatcher } from "svelte";
     import { supabase } from "../supabaseClient";
+
+    const dispatch = createEventDispatcher();
 
     export let userId;
     export let brewToUpdate = null;
@@ -51,6 +54,8 @@
                 console.error("Error inserting brew", error);
             }
         }
+
+        dispatch("refresh");
     }
 </script>
 

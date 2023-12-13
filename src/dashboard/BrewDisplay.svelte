@@ -9,6 +9,7 @@
     let brews = [];
     let currentBrewIndex = 0;
     let showUpdateForm = false;
+    let showAddForm = false;
     let brewToUpdate = null;
 
     async function fetchBrews() {
@@ -29,13 +30,9 @@
 
     onMount(fetchBrews);
 
-    function handleAddBrew() {
-        brewToUpdate = null;
-        shownewBrewForm = true;
-    }
-
-    function closeForm() {
-        showNewBrewForm = false;
+    function handleRefresh() {
+        showAddForm = false;
+        showUpdateForm = false;
         brewToUpdate = null;
         fetchBrews();
     }
@@ -56,7 +53,7 @@
 
     function handleUpdate(event) {
         const { brew_id } = event.detail;
-        brewToUpdate = brews.find(b => b.brew_id === brew_id);
+        brewToUpdate = brews.find((b) => b.brew_id === brew_id);
         showUpdateForm = true;
         console.log("Try to update", brew_id, brewToUpdate);
     }
@@ -87,7 +84,12 @@
 <section id="brewDisplay" class="flex bg-primary w-full justify-center">
     <div class="content-container" style="width: 100%">
         {#if showUpdateForm}
-            <NewBrewForm {userId} {brewToUpdate} />
+            <NewBrewForm {userId} {brewToUpdate} on:refresh={handleRefresh} />
+        {:else if showAddForm}
+            <NewBrewForm {userId} on:refresh={handleRefresh} />
+            <button on:click={() => (showAddForm = !showAddForm)}>
+                Cancel
+            </button>
         {:else if brews.length > 0}
             <div class="flex items-center justify-center">
                 <button on:click={goToPreviousBrew}>Previous</button>
@@ -98,9 +100,12 @@
                 />
                 <button on:click={goToNextBrew}>Next</button>
             </div>
+            <button on:click={() => (showAddForm = !showAddForm)}>
+                Add Brew
+            </button>
         {:else}
             <p>No brews found. Add your first brew!</p>
-            <NewBrewForm {userId} />
+            <NewBrewForm {userId} on:refresh={handleRefresh} />
         {/if}
     </div>
 </section>
