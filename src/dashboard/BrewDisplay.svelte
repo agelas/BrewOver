@@ -91,7 +91,10 @@
                 Cancel
             </button>
         {:else if brews.length > 0}
-            <div class="flex items-center justify-center">
+            <div
+                class="flex items-center justify-center"
+                style="margin-bottom: 20px;"
+            >
                 <button on:click={goToPreviousBrew}>Previous</button>
                 <BrewCard
                     brew={brews[currentBrewIndex]}
@@ -100,9 +103,15 @@
                 />
                 <button on:click={goToNextBrew}>Next</button>
             </div>
-            <button on:click={() => (showAddForm = !showAddForm)}>
-                Add Brew
-            </button>
+            <div class="text-center">
+                <button
+                    class="bg-accent hover:bg-accent-hover rounded"
+                    style="width: 200px; padding: 10px 16px;"
+                    on:click={() => (showAddForm = !showAddForm)}
+                >
+                    Add Brew
+                </button>
+            </div>
         {:else}
             <p>No brews found. Add your first brew!</p>
             <NewBrewForm {userId} on:refresh={handleRefresh} />
