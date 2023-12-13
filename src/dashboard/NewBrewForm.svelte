@@ -149,8 +149,10 @@
         <div class="full-width">
             <button
                 style="width: 25%; justify-content: center"
-                on:click={upsertBrew}>Add Brew</button
+                on:click={upsertBrew}
             >
+                {brewToUpdate ? "Update" : "Add Brew"}
+            </button>
         </div>
     </div>
 </div>
