@@ -151,12 +151,22 @@
             />
         </div>
 
-        <div class="full-width">
+        <div class="full-width margin-bottom: 20px;">
             <button
+                class="bg-accent hover:bg-accent-hover rounded"
                 style="width: 25%; justify-content: center"
                 on:click={upsertBrew}
             >
                 {brewToUpdate ? "Update" : "Add Brew"}
+            </button>
+        </div>
+        <div class="full-width">
+            <button
+                class="bg-accent hover:bg-accent-hover rounded"
+                style="width: 25%; justify-content: center"
+                on:click={() => dispatch("refresh")}
+            >
+                Cancel
             </button>
         </div>
     </div>
